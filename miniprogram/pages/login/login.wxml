@@ -1,0 +1,71 @@
+<view class="page">
+  <!-- Brand -->
+  <view class="brand">
+    <text class="brand-name">QPP</text>
+    <text class="brand-sub">财经知识助手</text>
+  </view>
+
+  <!-- Segmented control -->
+  <view class="segment">
+    <view class="segment-option {{mode == 'login' ? 'active' : ''}}" bindtap="onSwitchMode" data-mode="login">
+      <text>登录</text>
+    </view>
+    <view class="segment-option {{mode == 'register' ? 'active' : ''}}" bindtap="onSwitchMode" data-mode="register">
+      <text>注册</text>
+    </view>
+  </view>
+
+  <!-- Form — iOS grouped table-view style -->
+  <view class="form-card">
+    <view class="field-row">
+      <text class="field-prefix">+86</text>
+      <view class="field-divider"></view>
+      <input
+        class="field-input"
+        type="number"
+        maxlength="11"
+        placeholder="手机号"
+        value="{{phone}}"
+        bindinput="onPhoneInput"
+      />
+    </view>
+    <view class="field-row">
+      <input
+        class="field-input"
+        type="text"
+        password
+        placeholder="{{mode == 'register' ? '设置密码（不少于6位）' : '输入密码'}}"
+        value="{{password}}"
+        bindinput="onPasswordInput"
+        maxlength="20"
+      />
+    </view>
+    <view class="field-row" wx:if="{{mode == 'register'}}">
+      <input
+        class="field-input"
+        type="text"
+        password
+        placeholder="确认密码"
+        value="{{confirmPassword}}"
+        bindinput="onConfirmInput"
+        maxlength="20"
+      />
+    </view>
+  </view>
+
+  <!-- Action button -->
+  <button class="action-btn" bindtap="onSubmit" disabled="{{!canSubmit}}">
+    <text>{{mode == 'register' ? '注册' : '登录'}}</text>
+  </button>
+
+  <!-- Footer -->
+  <view class="footer">
+    <text class="skip-link" bindtap="onSkip">暂不登录，先看看</text>
+    <text class="footer-note">登录即表示同意</text>
+    <view class="footer-links">
+      <text class="footer-link" bindtap="onShowUserAgreement">《用户协议》</text>
+      <text class="footer-link" bindtap="onShowPrivacyPolicy">《隐私政策》</text>
+    </view>
+    <text class="footer-note">不同手机号对应独立的账户数据</text>
+  </view>
+</view>

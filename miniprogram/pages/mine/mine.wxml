@@ -1,0 +1,104 @@
+<view class="page">
+  <!-- Guest banner -->
+  <view class="guest-banner" wx:if="{{!accountPhone}}">
+    <text class="guest-hint">登录后可查看个人测评和学习参考</text>
+    <button class="guest-btn" bindtap="onGoLogin">去登录</button>
+  </view>
+
+  <block wx:if="{{accountPhone}}">
+  <view class="profile-header">
+    <view class="avatar-wrap">
+      <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+        <image wx:if="{{userInfo.avatar}}" class="avatar" src="{{userInfo.avatar}}" mode="aspectFill" />
+        <view wx:else class="avatar avatar-pl">
+          <text class="avatar-initial">{{userInfo.nickname ? userInfo.nickname[0] : '用'}}</text>
+        </view>
+      </button>
+    </view>
+    <input class="nickname-input" type="nickname" value="{{userInfo.nickname}}" placeholder="点击设置昵称" bindblur="onNicknameBlur" />
+    <text wx:if="{{phoneDisplay}}" class="phone-display">{{phoneDisplay}}</text>
+    <view wx:if="{{investorType}}" class="type-badge">
+      <text class="type-name">{{investorType}}</text>
+      <text class="type-score">{{riskScore}}分</text>
+    </view>
+    <text class="profile-subtitle muted" wx:else>完成测评，获取学习参考</text>
+  </view>
+
+  <block wx:if="{{investorType}}">
+    <view class="allocation-card">
+      <text class="card-heading">示例配置</text>
+      <view class="allocation-bar" wx:for="{{allocation}}" wx:key="name">
+        <view class="bar-header">
+          <text>{{item.name}}</text>
+          <text>{{item.pct}}%</text>
+        </view>
+        <view class="bar-track">
+          <view class="bar-fill" style="width:{{item.pct}}%;background:{{item.color}}"></view>
+        </view>
+      </view>
+      <text class="volatility-text" wx:if="{{expectedVolatility}}">预期年化波动：{{expectedVolatility}}</text>
+    </view>
+
+    <view class="advice-card" wx:if="{{typeDetail}}">
+      <text class="card-heading">学习参考</text>
+      <view class="advice-para" wx:for="{{typeDetail.advice}}" wx:key="*this">
+        <text class="advice-para-text">{{item}}</text>
+      </view>
+      <text class="advice-subhead">基本原则</text>
+      <view class="advice-tags">
+        <view class="advice-tag" wx:for="{{typeDetail.principles}}" wx:key="*this"><text>{{item}}</text></view>
+      </view>
+      <text class="advice-subhead">常见品种</text>
+      <view class="advice-tags">
+        <view class="advice-tag tag-green" wx:for="{{typeDetail.suitable}}" wx:key="*this"><text>{{item}}</text></view>
+      </view>
+      <text class="advice-subhead">需谨慎对待</text>
+      <view class="advice-tags">
+        <view class="advice-tag tag-red" wx:for="{{typeDetail.avoid}}" wx:key="*this"><text>{{item}}</text></view>
+      </view>
+    </view>
+
+    <view class="disclaimer-inline">
+      <text class="disclaimer-small">以上内容仅供参考，不构成投资建议。市场有风险，投资需谨慎。</text>
+    </view>
+  </block>
+  </block>
+
+  <view class="menu-group">
+    <view class="menu-item" bindtap="onMenuTap" data-key="quiz">
+      <view class="menu-icon-wrap" style="background: rgba(0,122,255,0.1);">
+        <text class="menu-symbol" style="color: #007AFF;">◎</text>
+      </view>
+      <text class="menu-label">{{investorType ? '重新测评' : '风险测评'}}</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onGoLogin" wx:if="{{!accountPhone}}">
+      <view class="menu-icon-wrap" style="background: rgba(0,122,255,0.1);">
+        <text class="menu-symbol" style="color: #007AFF;">⇤</text>
+      </view>
+      <text class="menu-label" style="color: var(--color-primary);">手机号登录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <block wx:if="{{accountPhone}}">
+    <view class="menu-item" bindtap="onRefreshLogin">
+      <view class="menu-icon-wrap" style="background: rgba(142,142,147,0.1);">
+        <text class="menu-symbol" style="color: #8E8E93;">↻</text>
+      </view>
+      <text class="menu-label">刷新登录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    <view class="menu-item" bindtap="onMenuTap" data-key="logout">
+      <view class="menu-icon-wrap" style="background: rgba(255,59,48,0.08);">
+        <text class="menu-symbol" style="color: #FF3B30;">⇤</text>
+      </view>
+      <text class="menu-label" style="color: #FF3B30;">退出登录</text>
+      <text class="menu-arrow">›</text>
+    </view>
+    </block>
+  </view>
+
+  <view class="quote-section">
+    <text class="quote-line">若见诸相非相</text>
+    <text class="quote-line">则见如来</text>
+  </view>
+</view>
