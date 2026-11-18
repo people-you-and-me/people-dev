@@ -11,18 +11,18 @@
 **扫码体验**（用微信「扫一扫」识别小程序码）：
 
 <p align="center">
-  <img src="docs/images/miniprogram-code.png" width="220" alt="小程序码"/>
+  <img src="docs/images/miniprogram-code.jpg" width="220" alt="小程序码"/>
 </p>
 
 **界面截图**：
 
 <p align="center">
-  <img src="docs/images/screenshot-home.png" width="200" alt="市场页"/>
-  <img src="docs/images/screenshot-invest.png" width="200" alt="学习/投资页"/>
-  <img src="docs/images/screenshot-quiz.png" width="200" alt="风险问卷页"/>
+  <img src="docs/images/screenshot-market.jpg" width="150" alt="市场简报"/>
+  <img src="docs/images/screenshot-invest.jpg" width="150" alt="学习·金融知识"/>
+  <img src="docs/images/screenshot-concept.jpg" width="150" alt="概念详情"/>
+  <img src="docs/images/screenshot-quiz.jpg" width="150" alt="风险问卷结果"/>
+  <img src="docs/images/screenshot-quiz-result.jpg" width="150" alt="资产配置建议"/>
 </p>
-
-> ⚠️ 以上二维码与截图目前为**占位图**，请替换 `docs/images/` 下的同名文件为真实素材（生成方法见文末 [添加演示素材](#添加演示素材)）。
 
 ## ✨ 功能
 
@@ -88,20 +88,6 @@ QuantPulse-Pro/
 | `getMyLikes` | 我的点赞 |
 
 > 云函数依赖 `wx-server-sdk`（见各 `cloudfunctions/*/package.json`）。部署时选择「云端安装依赖」即可自动安装，无需手动上传 `node_modules`。
-
-## 📝 添加演示素材
-
-**小程序码**（`docs/images/miniprogram-code.png`）：
-
-1. 登录[微信公众平台](https://mp.weixin.qq.com) → 你的小程序
-2. 左侧「设置」→「基本设置」→ 找到「小程序码」，点击「下载」或截图
-3. 重命名为 `miniprogram-code.png`，替换 `docs/images/` 下同名文件
-
-**界面截图**（`docs/images/screenshot-*.png`）：
-
-1. 微信开发者工具打开项目 → 编译预览
-2. 使用工具自带「截图」功能，或真机预览后手机截图
-3. 分别替换 `screenshot-home.png` / `screenshot-invest.png` / `screenshot-quiz.png`
 
 ## 📄 许可证
 
